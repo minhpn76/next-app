@@ -1,4 +1,4 @@
-export const BASE_PATH = '/aurora';
+export const BASE_PATH = '';
 
 //keys stored in session storage
 export const LOCAL_STORAGE_KEY = {

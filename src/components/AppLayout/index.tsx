@@ -1,4 +1,4 @@
-import { ErrorBoundary } from '@geit/ui-components';
+import { ErrorBoundary } from '../ErrorBoundary';
 import { PropsWithChildren } from 'react';
 import { AuthenticationTemplate } from './AuthenticationTemplate';
 import { ErrorFallback } from '../ErrorFallback';

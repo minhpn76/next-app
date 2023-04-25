@@ -1,4 +1,4 @@
-import { BASE_PATH } from '@/helpers/constants'
+import { BASE_PATH } from '@/helpers/constants';
 
 // start up mock service for client
 export const setupClientMocks = async () => {

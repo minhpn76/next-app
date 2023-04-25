@@ -1,6 +1,6 @@
 import { QueryClient, useQuery } from '@tanstack/react-query';
 import { LOCAL_STORAGE_KEY } from '@/helpers/constants';
-import { tokenRefresh, logout } from './api';
+import { tokenRefresh, logout, UserService } from './api';
 import { Token } from '../types';
 
 /**
@@ -13,11 +13,11 @@ const acquireToken = async () => {
     token = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY.TOKEN_PAYLOAD) || '{}');
     if (token.accessToken) {
       // minus 20 seconds for network latency
-      // if (new Date(token.expiryAt - 20 * 1000) > new Date()) {
-      return token;
-      // }
-      // console.log('token expired, requesting a new token', 'expired at', new Date(token.expiryAt));
-      // return refreshToken('');
+      if (new Date(token.expiryAt - 20 * 1000) > new Date()) {
+        return token;
+      }
+      console.log('token expired, requesting a new token', 'expired at', new Date(token.expiryAt));
+      return refreshToken(token.refreshToken);
     } else {
       return null;
     }
@@ -56,4 +56,10 @@ export const doLogout = async (queryClient: QueryClient) => {
     queryClient.clear();
     localStorage.removeItem(LOCAL_STORAGE_KEY.TOKEN_PAYLOAD);
   }
+};
+
+export const useGetUserProfile = () => {
+  return useQuery(['UserService.useGetUserProfile'], () => UserService.getUserProfile(), {
+    staleTime: Infinity,
+  });
 };

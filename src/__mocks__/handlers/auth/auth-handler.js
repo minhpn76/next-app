@@ -20,7 +20,7 @@ const generateApigeeToken = () => {
   return { access_token };
 };
 
-export const validateToken = (req) => {
+export const validateToken = req => {
   if (process.env.NODE_ENV === 'test') {
     return true;
   }
@@ -41,13 +41,11 @@ export const validateToken = (req) => {
   }
   return false;
 };
-
 export const authHandlers = [
   /**username, password local login */
   rest.post(`${API_MODULE_URL}/api/v1/auth/token`, async (req, res, ctx) => {
     const { brn, email, serviceNo } = await req.json();
     console.log(brn, email, serviceNo);
-    console.log(req);
 
     const token = generateToken();
     return res(ctx.delay(3000), ctx.status(200), ctx.json(token));
@@ -104,6 +102,25 @@ export const authHandlers = [
   rest.get(`${API_MODULE_URL}/login/users/logout`, (req, res, ctx) => {
     if (validateToken(req)) {
       return res(ctx.status(200));
+    }
+
+    return res(
+      ctx.status(401),
+      ctx.json({
+        message: 'Not authorized',
+      })
+    );
+  }),
+  rest.get(`${API_MODULE_URL}/api/v1/user/profile`, (req, res, ctx) => {
+    if (validateToken(req)) {
+      return res(
+        ctx.status(200),
+        ctx.json({
+          userId: 1,
+          firstName: 'Edward',
+          lastName: 'Pham',
+        })
+      );
     }
 
     return res(

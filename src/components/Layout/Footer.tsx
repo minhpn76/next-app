@@ -1,26 +1,26 @@
-import { Column, Grid, Row } from '@dls/web';
+import { Grid } from '@mui/material';
 import styled from 'styled-components';
-import { media } from '@/config/theme-config';
+import Link from 'next/link';
 
 function Footer() {
   return (
     <SCFooterContainer id="footer">
-      <Grid fluid={false}>
-        <Row>
-          <Column>
+      <Grid container>
+        <Grid item xs={12}>
+          <div>
             <SCFooterContent className="d-flex justify-content-between gap-3">
-              <a href="/terms-and-conditions" target="blank" rel="noreferrer" className="item">
+              <Link href="/terms-and-conditions" target="blank" rel="noreferrer" className="item">
                 TERMS & CONDITIONS
-              </a>
-              <a href="https://www.singtel.com/copyright" target="_blank" rel="noreferrer" className="item">
+              </Link>
+              <Link href="https://www.singtel.com/copyright" target="_blank" rel="noreferrer" className="item">
                 COPYRIGHT
-              </a>
+              </Link>
               <div className="item">
                 <span>© Singtel (CRN: 199201624D) All Rights Reserved.</span>
               </div>
             </SCFooterContent>
-          </Column>
-        </Row>
+          </div>
+        </Grid>
       </Grid>
     </SCFooterContainer>
   );
@@ -66,23 +66,6 @@ const SCFooterContent = styled.div`
     margin-right: 24px;
     display: none;
   }
-
-  ${media.md`
-    flex-direction: row;
-
-    .logo {
-      display: block;
-    }
-
-    & > a {
-      margin-right: 24px;
-      font-size: 16px;
-    }
-
-    span {
-      font-size: 16px;
-    }
-  `}
 `;
 
 export default Footer;

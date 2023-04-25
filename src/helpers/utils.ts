@@ -54,9 +54,11 @@ export const sanitizeUserSearchText = (search: string) => {
 export const loginRedirect = (router?: NextRouter) => {
   localStorage.removeItem(LOCAL_STORAGE_KEY.TOKEN_PAYLOAD);
   if (router) {
-    router.push('/market/login/sso');
+    // router.push('/market/login/sso');
+    router.push('/auth/login');
   } else {
-    window.location.href = BASE_PATH + '/market/login/sso';
+    // window.location.href = BASE_PATH + '/market/login/sso';
+    window.location.href = BASE_PATH + '/auth/login';
   }
 };
 

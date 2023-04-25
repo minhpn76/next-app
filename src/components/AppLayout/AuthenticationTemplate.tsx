@@ -1,4 +1,4 @@
-import { Loading, MessageBoundaryProvider } from '@geit/ui-components';
+import Loading from '../Loading';
 import { useRouter } from 'next/router';
 import React, { PropsWithChildren } from 'react';
 import { loginRedirect } from '@/helpers/utils';
@@ -33,9 +33,9 @@ const AuthenticatedTemplate = ({ children }: { children: React.ReactNode }) => {
     }
   }
 
-  return <MessageBoundaryProvider>{children}</MessageBoundaryProvider>;
+  return <div>{children}</div>;
 };
 
 const UnauthenticatedTemplate = ({ children }: { children: React.ReactNode }) => {
-  return <MessageBoundaryProvider>{children}</MessageBoundaryProvider>;
+  return <div>{children}</div>;
 };

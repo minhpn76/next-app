@@ -1,8 +1,9 @@
-import { Column, Grid, Row } from '@dls/web';
+import { Grid } from '@mui/material';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { BASE_PATH } from '@/helpers/constants';
+import Link from 'next/link';
 
 export default function Header() {
   const router = useRouter();
@@ -10,9 +11,9 @@ export default function Header() {
   return (
     <SCHeader>
       <SCGrid>
-        <Row>
-          <Column>
-            <a
+        <Grid container>
+          <Grid item xs={12}>
+            <Link
               href={BASE_PATH + '/'}
               onClick={event => {
                 event.preventDefault();
@@ -20,9 +21,9 @@ export default function Header() {
               }}
             >
               <Image src={`${BASE_PATH}/logo.svg`} alt="logo" width={69} height={47} priority />
-            </a>
-          </Column>
-        </Row>
+            </Link>
+          </Grid>
+        </Grid>
       </SCGrid>
     </SCHeader>
   );

@@ -32,3 +32,9 @@ export const marketAutoLogin = ({ userToken }: { userToken: string }) => {
 export const logout = () => {
   axios.get(API_LOGOUT_ENDPOINT);
 };
+
+export namespace UserService {
+  export const getUserProfile = () => {
+    return axios.get(`/api/v1/user/profile`).then(resp => resp.data);
+  };
+}
